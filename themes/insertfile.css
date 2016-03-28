@@ -1,0 +1,39 @@
+/* Thanks for zhuzhu */
+.edui-insert-file-list {
+    font-family: '微软雅黑';
+    color: #666;
+    padding: 0;
+    font-size: 14px;
+    margin-left: 30px;
+    list-style: none;
+}
+.edui-insert-file-list li {
+    margin-bottom: 10px;
+}
+.edui-insert-file-list .edui-insert-file-list-name {
+    display: inline-block;
+    width: 250px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+.edui-insert-file-list .edui-insert-file-list-remove {
+    color: #f00;
+    margin: 0 60px 0 100px;
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: middle;
+}
+.edui-insert-file-list .edui-insert-file-list-remove .edui-insert-file-list-remove-icon {
+    display: inline-block;
+    height: 14px;
+    text-align: center;
+    width: 14px;
+    line-height: 14px;
+    border: 1px solid #f00;
+    margin-right: 5px;
+    font-style: normal;
+    border-radius: 50%;
+    font-size: 10px;
+}

@@ -1,0 +1,30 @@
+{
+    "name": "ueditor-ext",
+    "title": "ueditor-ext",
+    "description": "二次开发UEditor富文本web编辑器",
+    "version": "1.0.0",
+    "homepage": "https://github.com/Choate/ueditor-ext",
+    "author": {
+        "name": "Choate",
+        "url": "https://github.com/Choate",
+        "email": "choate.yao@gmail.com"
+    },
+    "License": "",
+    "keywords": [
+        "ueditor",
+        "web editor",
+        "javascript",
+        "ueditor-ext"
+    ],
+    "readmeFilename": "README.md",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Choate/ueditor-ext.git"
+    },
+
+    "dependencies": {
+        "ueditor": "https://github.com/fex-team/ueditor.git#v1.4.3.2",
+        "phpjs": "~1.3.2"
+    }
+}
+
