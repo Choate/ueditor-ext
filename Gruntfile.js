@@ -72,7 +72,7 @@ module.exports = function (grunt) {
 
         },
         packageJson = grunt.file.readJSON('package.json'),
-        server = grunt.option('server') || 'php',
+        server = grunt.option('server') || '',
         encode = grunt.option('encode') || 'utf8',
         disDir = "dist/",
         banner = '/*!\n * ' + packageJson.name + '\n * version: ' + packageJson.version + '\n * build: <%= new Date() %>\n */\n\n';
@@ -83,7 +83,8 @@ module.exports = function (grunt) {
         server = typeof server === "string" ? server.toLowerCase() : 'php';
         encode = typeof encode === "string" ? encode.toLowerCase() : 'utf8';
 
-        disDir = 'dist/' + encode + '-' + server + '/';
+        //disDir = 'dist/' + encode + '-' + server + '/';
+        disDir = 'dist/';
 
     })();
 
@@ -278,7 +279,11 @@ module.exports = function (grunt) {
 
     grunt.registerTask('default', 'UEditor build', function () {
 
-        var tasks = [ 'concat', 'cssmin', 'closurecompiler', 'copy:base', 'copy:extend', 'copy:' + server, 'copy:demo', 'replace:demo', 'clean' ];
+        var tasks = [ 'concat', 'cssmin', 'closurecompiler', 'copy:base', 'copy:extend', 'copy:demo', 'replace:demo', 'clean' ];
+
+        if (server) {
+            tasks.push('copy:' + server);
+        }
 
         if (encode === 'gbk') {
             tasks.push('replace:fileEncode');
