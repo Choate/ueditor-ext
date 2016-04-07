@@ -1,19 +1,25 @@
 {
   "name": "ueditor-ext",
+  "homepage": "https://github.com/Choate/ueditor-ext",
   "version": "1.0.0",
   "main": "dist/ueditor.all.min.js",
   "license": "MIT",
+  "authors": [
+    "Choate <choate.yao@gmail.com>"
+  ],
+  "description": "二次开发UEditor富文本web编辑器",
   "ignore": [
     "**/.*",
     "src",
     "package.json",
     "Gruntfile.js",
-    "build.conf.json",
+    "build.conf.json"
   ],
   "keywords": [
     "ueditor",
     "web editor",
     "javascript",
     "ueditor-ext"
-  ]
+  ],
+
 }
