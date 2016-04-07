@@ -1,0 +1,19 @@
+{
+  "name": "ueditor-ext",
+  "version": "1.0.0",
+  "main": "dist/ueditor.all.min.js",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "src",
+    "package.json",
+    "Gruntfile.js",
+    "build.conf.json",
+  ],
+  "keywords": [
+    "ueditor",
+    "web editor",
+    "javascript",
+    "ueditor-ext"
+  ]
+}
