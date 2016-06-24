@@ -163,7 +163,9 @@ module.exports = function (grunt) {
                 files: [
                     {
                         src: [ 'ext-dialogs/**' ],
-                        dest: disDir
+                        dest: disDir,
+                        expand: true,
+                        cwd: 'src'
                     }
                 ]
             },
