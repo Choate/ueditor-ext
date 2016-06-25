@@ -1,7 +1,7 @@
 {
   "name": "ueditor-ext",
   "homepage": "https://github.com/Choate/ueditor-ext",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "dist/ueditor.all.min.js",
   "license": "MIT",
   "authors": [
