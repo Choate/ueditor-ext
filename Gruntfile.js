@@ -1,10 +1,7 @@
-'use strict';
-
 module.exports = function (grunt) {
     var build = grunt.file.exists('local.build.conf.json') ? grunt.file.readJSON('local.build.conf.json') : grunt.file.readJSON('build.conf.json')
 
     var fs = require("fs"),
-        php = require('phpjs'),
         Util = {
             jsBasePath: build.sourcePath + '_src/',
             parseBasePath: build.sourcePath + '_parse/',
@@ -17,10 +14,10 @@ module.exports = function (grunt) {
                 sources = sources[1].replace(/\/\/.*\n/g, '\n').replace(/'|"|\n|\t|\s/g, '');
                 sources = sources.split(",");
                 sources.forEach(function (filepath, index) {
-                    if (except && php.in_array(filepath, except)) {
+                    if (except && in_array(filepath, except)) {
                         return false;
                     }
-                    sources[ index ] = basePath + filepath;
+                    sources[index] = basePath + filepath;
                 });
 
                 return sources;
@@ -34,17 +31,17 @@ module.exports = function (grunt) {
                     src = [];
 
                 while (filepath = pattern.exec(sources)) {
-                    if (except && php.in_array(filepath[1], except)) {
+                    if (except && in_array(filepath[1], except)) {
                         continue;
                     }
-                    src.push(this.cssBasePath + filepath[ 1 ].replace(/'|"/g, ""));
+                    src.push(this.cssBasePath + filepath[1].replace(/'|"/g, ""));
                 }
 
                 return src;
 
             },
 
-            fetchScriptsByArray: function(modules, extendModules) {
+            fetchScriptsByArray: function (modules, extendModules) {
                 var sources = [];
                 for (var i = 0; i < modules.length; i++) {
                     if (modules[i].indexOf(this.jsBasePath)) {
@@ -57,7 +54,7 @@ module.exports = function (grunt) {
                 return sources.concat(extendModules);
             },
 
-            fetchStylesByArray: function(styles, extendStyles) {
+            fetchStylesByArray: function (styles, extendStyles) {
                 var sources = [];
                 for (var i = 0; i < modules.length; i++) {
                     if (modules[i].indexOf(this.cssBasePath)) {
@@ -94,7 +91,7 @@ module.exports = function (grunt) {
             js: {
                 options: {
                     banner: '/*!\n * ' + packageJson.name + '\n * version: ' + packageJson.version + '\n * build: <%= new Date() %>\n */\n\n' +
-                        '(function(){\n\n',
+                    '(function(){\n\n',
                     footer: '\n\n})();\n',
                     process: function (src, s) {
                         var filename = s.substr(s.indexOf('/') + 1);
@@ -107,7 +104,7 @@ module.exports = function (grunt) {
             parse: {
                 options: {
                     banner: '/*!\n * ' + packageJson.name + ' parse\n * version: ' + packageJson.version + '\n * build: <%= new Date() %>\n */\n\n' +
-                        '(function(){\n\n',
+                    '(function(){\n\n',
                     footer: '\n\n})();\n'
                 },
                 src: Util.fetchScripts(build.sourcePath + "ueditor.parse.js", Util.parseBasePath, build.exceptParse).concat(build.extendParse || []),
@@ -133,14 +130,16 @@ module.exports = function (grunt) {
         closurecompiler: {
             dist: {
                 options: {
-                    banner: '/*!\n * ' + packageJson.name + '\n * version: ' + packageJson.version + '\n * build: <%= new Date() %>\n */'
+                    banner: '/*!\n * ' + packageJson.name + '\n * version: ' + packageJson.version + '\n * build: <%= new Date() %>\n */',
+                    compilation_level: 'WHITESPACE_ONLY'
                 },
                 src: disDir + '<%= pkg.name %>.all.js',
                 dest: disDir + '<%= pkg.name %>.all.min.js'
             },
             parse: {
                 options: {
-                    banner: '/*!\n * ' + packageJson.name + ' parse\n * version: ' + packageJson.version + '\n * build: <%= new Date() %>\n */'
+                    banner: '/*!\n * ' + packageJson.name + ' parse\n * version: ' + packageJson.version + '\n * build: <%= new Date() %>\n */',
+                    compilation_level: 'WHITESPACE_ONLY'
                 },
                 src: disDir + '<%= pkg.name %>.parse.js',
                 dest: disDir + '<%= pkg.name %>.parse.min.js'
@@ -151,7 +150,7 @@ module.exports = function (grunt) {
                 files: [
                     {
 
-                        src: [ '*.html', 'themes/iframe.css', 'themes/default/dialogbase.css', 'themes/default/images/**', 'dialogs/**', 'lang/**', 'third-party/**' ],
+                        src: ['*.html', 'themes/iframe.css', 'themes/default/dialogbase.css', 'themes/default/images/**', 'dialogs/**', 'lang/**', 'third-party/**'],
                         dest: disDir,
                         expand: true,
                         cwd: build.sourcePath
@@ -162,7 +161,7 @@ module.exports = function (grunt) {
             extend: {
                 files: [
                     {
-                        src: [ 'ext-dialogs/**' ],
+                        src: ['ext-dialogs/**'],
                         dest: disDir,
                         expand: true,
                         cwd: 'src'
@@ -221,7 +220,7 @@ module.exports = function (grunt) {
         replace: {
 
             fileEncode: {
-                src: [ disDir + '**/*.html', disDir + 'dialogs/**/*.js', disDir + '**/*.css', disDir + '**/*.php', disDir + '**/*.jsp', disDir + '**/*.ashx', disDir + '**/*.asp' ],
+                src: [disDir + '**/*.html', disDir + 'dialogs/**/*.js', disDir + '**/*.css', disDir + '**/*.php', disDir + '**/*.jsp', disDir + '**/*.ashx', disDir + '**/*.asp'],
                 overwrite: true,
                 replacements: [
                     {
@@ -245,7 +244,7 @@ module.exports = function (grunt) {
                 ]
             },
             gbkasp: {
-                src: [ disDir + 'asp/*.asp' ],
+                src: [disDir + 'asp/*.asp'],
                 overwrite: true,
                 replacements: [
                     {
@@ -281,7 +280,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('default', 'UEditor build', function () {
 
-        var tasks = [ 'concat', 'cssmin', 'closurecompiler', 'copy:base', 'copy:extend', 'copy:demo', 'replace:demo', 'clean' ];
+        var tasks = ['concat', 'cssmin', 'closurecompiler', 'copy:base', 'copy:extend', 'copy:demo', 'replace:demo', 'clean'];
 
         if (server) {
             tasks.push('copy:' + server);
@@ -327,6 +326,27 @@ module.exports = function (grunt) {
             grunt.log.warn('config file update error');
         }
 
+    }
+
+    function in_array(needle, haystack, argStrict) { 
+        var key = '';
+        var strict = !!argStrict;
+
+        if (strict) {
+            for (key in haystack) {
+                if (haystack[key] === needle) {
+                    return true
+                }
+            }
+        } else {
+            for (key in haystack) {
+                if (haystack[key] == needle) {
+                    return true
+                }
+            }
+        }
+
+        return false
     }
 
 };

@@ -9,7 +9,7 @@
         "url": "https://github.com/Choate",
         "email": "choate.yao@gmail.com"
     },
-    "License": "",
+    "License": "BSD-3-Clause",
     "keywords": [
         "ueditor",
         "web editor",
@@ -24,7 +24,6 @@
 
     "dependencies": {
         "ueditor": "https://github.com/fex-team/ueditor.git#v1.4.3.2",
-        "phpjs": "~1.3.2",
         "grunt-cli": "~1.1"
     }
 }

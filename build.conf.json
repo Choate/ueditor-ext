@@ -1,10 +1,13 @@
 {
   "sourcePath": "node_modules/ueditor/",
   "exceptModules": [
-    "src/plugins/insertfile.js"
+    "src/plugins/insertfile.js",
+    "src/plugins/video.js"
   ],
   "extendModules": [
-    "src/plugins/insertfile.js"
+    "src/plugins/insertfile.js",
+    "src/plugins/video.js",
+    "src/core/Editor.js"
   ],
   "extendStyles": [
     "src/themes/insertfile.css"
